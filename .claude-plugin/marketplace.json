@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "closer-skill",
+  "description": "Closer by Brian MacDonald",
+  "owner": {
+    "name": "Brian MacDonald",
+    "url": "https://github.com/bmacbuilds"
+  },
+  "plugins": [
+    {
+      "name": "closer",
+      "description": "Eleven commands that run a small sales team: leads found from public listings with the gap you fix, cold email drafted for your yes, follow-ups until a call is booked, the call on your calendar, a brief on the prospect, a coach during the call, the proposal and the contract, every email and call logged on one board, quiet deals won back and the month forecast.",
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/bmacbuilds/closer-skill"
+    }
+  ]
+}
