@@ -14,7 +14,7 @@ set -euo pipefail
 
 NAME="closer"
 FALLBACK="bmac-closer"
-RELEASE_URL="${CLOSER_RELEASE_URL:-https://github.com/bmacbuilds/closer-skill/archive/refs/tags/v1.0.0.tar.gz}"
+RELEASE_URL="${CLOSER_RELEASE_URL:-https://github.com/bmacbuilds/closer-skill/archive/refs/tags/v1.1.0.tar.gz}"
 MARKER=".closer-install"
 COMMANDS="record-keeper prospector follow-up sales-coach contract-writer researcher scheduler pipeline proposal-writer win-back forecaster"   # written by scripts/sync.py from skill.json
 FROM="" UPDATE=0 REPLACE=0 ASSUME_YES=0

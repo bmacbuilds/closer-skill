@@ -322,6 +322,7 @@ def main(argv=None):
     s = sub.add_parser("init")
     for k in ("name", "company", "email", "address", "timezone", "phone", "offer", "price", "plan_b", "value_line", "proof"):
         s.add_argument("--" + k)
+    s.add_argument("--we", action="store_true", help="a team: the emails say \"we\", not \"I\"")
     s = sub.add_parser("contact")
     for k in ("id", "name", "title", "company", "email", "phone", "website", "source", "notes"):
         s.add_argument("--" + k)
@@ -347,6 +348,8 @@ def main(argv=None):
             if os.path.exists(a.file):
                 raise PipelineError("%s already exists; nothing changed." % a.file)
             me = {k: getattr(a, k) for k in ("name", "company", "email", "address", "timezone", "phone", "offer", "price", "plan_b", "value_line", "proof")}
+            if a.we:
+                me["we"] = True
             save(empty(me), a.file)
             print("Created %s" % a.file)
             if not me.get("address"):

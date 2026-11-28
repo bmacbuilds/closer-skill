@@ -19,7 +19,7 @@ param(
 $ErrorActionPreference = "Stop"
 $Fallback = "bmac-closer"
 $ReleaseUrl = if ($env:CLOSER_RELEASE_URL) { $env:CLOSER_RELEASE_URL } else {
-  "https://github.com/bmacbuilds/closer-skill/archive/refs/tags/v1.0.0.zip" }
+  "https://github.com/bmacbuilds/closer-skill/archive/refs/tags/v1.1.0.zip" }
 $Marker = ".closer-install"
 $Commands = @("record-keeper", "prospector", "follow-up", "sales-coach", "contract-writer", "researcher", "scheduler", "pipeline", "proposal-writer", "win-back", "forecaster")   # written by scripts/sync.py from skill.json
 

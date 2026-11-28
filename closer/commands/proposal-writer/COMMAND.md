@@ -34,8 +34,9 @@ python3 "<this command's folder>/proposal.py" record --deal bluebird-ads --appro
 4. Fill every `[Claude: ...]`: "What we'll do" in 3 to 5 plain lines with dates. Use their words for
    their problem. `record` refuses while any placeholder is left.
 5. Show it. Ask: "Send this proposal to Priya? Reply yes or no."
-6. On a yes: a Gmail draft with the proposal (pasted in, or attached as a PDF) from the user's account,
-   which the user sends (or sent through the Gmail connector right after that yes).
+6. On a yes: a draft with the proposal (pasted in, or attached as a PDF) in the user's own mail (Gmail or
+   Microsoft 365, through its connector), which the user sends (or sent through that connector right after that
+   yes). With no mail connected, they copy it into their own mail, send it themselves and tell you when it went.
    Then `proposal.py record --approval "<their yes>"`.
 7. When they pick an option, `/closer-contract-writer`.
 

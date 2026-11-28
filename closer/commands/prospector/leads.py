@@ -5,12 +5,15 @@
              (no online booking, not mobile-friendly, slow, no ads tag, no reviews, no online ordering)
   rank       audits every row of a leads CSV, slowly, and ranks them -> closer/leads.json
   add        puts the top leads on the board as contacts + deals (stage lead), skipping anyone suppressed
+  bring      puts one lead the user already knows on the board (no website needed), with the country it is in
   draft      writes the opening email for one lead from the gap it found, with the legal footer
   record     logs the opening AFTER it went out, with your yes word for word (moves the deal to contacted)
 
     python3 leads.py audit https://harborlanedental.example
     python3 leads.py rank --csv leads.csv --offer "booking-ready websites"
     python3 leads.py add --top 10 --value 2500 --today 2026-10-19
+    python3 leads.py bring --who "Maria Chen" --company "Oak Street Bakery" --email maria@oakstreetbakery.example \
+        --where "United States" --value 300
     python3 leads.py draft --contact dana-harbor-lane
     python3 leads.py record --contact dana-harbor-lane --text-file /tmp/opening.txt --approval "yes" --at 2026-10-19T09:02
 
@@ -36,7 +39,7 @@ import urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
 OPENERS = os.path.join(HERE, "openers.json")
 LEADS_FILE = os.path.join("closer", "leads.json")
-UA = "closer/1.0 (+https://github.com/bmacbuilds/closer-skill; one public page per site)"
+UA = "closer/1.1 (+https://github.com/bmacbuilds/closer-skill; one public page per site)"
 DAILY_CAP = 50
 SLOW_SECONDS = 4.0
 
@@ -171,6 +174,80 @@ def add_leads(data, ranked, top, value, today):
     return added, skipped
 
 
+# Where cold email to people needs a lawful basis or consent first (Closer's own rule): the UK, the EU and Canada.
+CONSENT_FIRST = {
+    "the UK": ("uk", "united kingdom", "england", "scotland", "wales", "northern ireland", "great britain", "britain",
+               "gb"),
+    "the EU": ("eu", "european union", "austria", "belgium", "bulgaria", "croatia", "cyprus", "czechia",
+               "czech republic", "denmark", "estonia", "finland", "france", "germany", "greece", "hungary", "ireland",
+               "italy", "latvia", "lithuania", "luxembourg", "malta", "netherlands", "poland", "portugal", "romania",
+               "slovakia", "slovenia", "spain", "sweden"),
+    "Canada": ("canada",),
+}
+# Places whose names hold a UK name but are not in the UK.
+NOT_THE_UK = ("new south wales", "new england")
+
+
+def consent_first(where):
+    """"the UK", "the EU" or "Canada" when a lead's country needs a lawful basis or consent before a cold email,
+    None when it does not, and "unknown" when the country was never given."""
+    place = re.sub(r"[^a-z ]", " ", (where or "").lower())
+    words = " %s " % " ".join(place.split())
+    if not words.strip():
+        return "unknown"
+    for name in NOT_THE_UK:
+        words = words.replace(" %s " % name, " ")
+    for region, names in CONSENT_FIRST.items():
+        if any(" %s " % n in words for n in names):
+            return region
+    return None
+
+
+def bring(data, today, who, company, email=None, website=None, where=None, why=None, value=0, title=None,
+          own_deal=False):
+    """One lead the user already knows, on the board as a contact and a deal (stage lead).
+
+    The deal is named for the business. When the business already has one (a second person there, such as a
+    business partner), it is never replaced: bring refuses and names it, and with own_deal the new person gets a
+    deal of their own, named for the business and them."""
+    if not (who or company):
+        raise ProspectError("Give the person's name (--who) or the business (--company).")
+    email = (email or "").strip().lower() or None
+    if email and P.suppressed(data, email):
+        raise ProspectError("%s is on the suppression list. Closer never emails them." % email)
+    cid = P.slug("%s %s" % ((who or "").split(" ")[0], company or who))
+    if P.find(data["contacts"], cid) or any(c.get("email") == email for c in data["contacts"] if email):
+        raise ProspectError("%s is already on the board." % (who or company))
+    deal_id = P.slug("%s %s" % (company, who) if own_deal and company and who else company or who)
+    held = P.find(data["deals"], deal_id) or (own_deal and P.find(data["contacts"], deal_id))
+    if held:
+        if own_deal:
+            raise ProspectError("%s is already a name on the board." % deal_id)
+        first = P.find(data["contacts"], held.get("contact_id")) or {}
+        raise ProspectError(
+            "%s already has a deal on the board (%s, %s, with %s). Nothing was changed. To write to %s too, bring "
+            "them again with --own-deal, and they get a deal of their own." % (
+                company or who, held["stage"], "%s %s" % (held.get("currency") or "USD",
+                                                           "{:,.0f}".format(held.get("value") or 0)),
+                first.get("name") or "someone else", who or company))
+    P.upsert_contact(data, id=cid, name=who or company, title=title, company=company, email=email, website=website,
+                     where=where, source="brought by you", notes="Why: %s" % (why or "-"))
+    P.upsert_deal(data, today, id=deal_id, contact_id=cid, title=data.get("me", {}).get("offer")
+                  or "New business", stage="lead", value=value, next_step="Opening email")
+    return cid
+
+
+def warnings_for(contact):
+    region = consent_first(contact.get("where"))
+    if region == "unknown":
+        return ["Where is %s? Ask before it goes out: in the UK, the EU and Canada, cold email to people needs a "
+                "lawful basis or consent first." % (contact.get("company") or contact["name"])]
+    if region:
+        return ["%s is in %s: cold email to people there needs a lawful basis or consent first. Say so before it "
+                "goes out." % (contact.get("company") or contact["name"], region)]
+    return []
+
+
 def load_openers():
     with open(OPENERS, encoding="utf-8") as fh:
         return json.load(fh)
@@ -206,12 +283,14 @@ def draft(data, openers, contact_id, gap=None, offer=None):
     key = gap or next((g for g in deal.get("gaps", []) if g in openers), "generic")
     t = openers.get(key, openers["generic"])
     me = data.get("me", {})
+    what = (offer or me.get("offer") or "[fill: offer]").strip().rstrip(".")
     fields = {"first": c["name"].split()[0], "company": c.get("company") or c["name"],
               "short": short_name(c.get("company") or c["name"]),
-              "offer": offer or me.get("offer") or "[fill: offer]", "me": (me.get("name") or "").split(" ")[0]}
+              "offer": what, "pitch": "%s do %s." % ("We" if me.get("we") else "I", what),
+              "me": (me.get("name") or "").split(" ")[0]}
     body = t["body"].format(**fields) + footer(me)
     return {"to": c["email"], "subject": t["subject"].format(**fields), "body": body, "gap": key,
-            "missing": re.findall(r"\[fill: (\w+)\]", body)}
+            "missing": re.findall(r"\[fill: (\w+)\]", body), "warnings": warnings_for(c)}
 
 
 def record(data, contact_id, text, approval, when, subject=None):
@@ -254,6 +333,13 @@ def main(argv=None):
     s.add_argument("--leads", default=LEADS_FILE)
     s.add_argument("--top", type=int, default=10)
     s.add_argument("--value", type=float, default=0)
+    s.add_argument("--today")
+    s = sub.add_parser("bring")
+    for k in ("who", "company", "email", "website", "where", "why", "title"):
+        s.add_argument("--" + k)
+    s.add_argument("--value", type=float, default=0)
+    s.add_argument("--own-deal", action="store_true",
+                   help="the business already has a deal: give this person a deal of their own")
     s.add_argument("--today")
     s = sub.add_parser("draft")
     s.add_argument("--contact", required=True)
@@ -304,11 +390,21 @@ def main(argv=None):
             print("Added %d leads: %s" % (len(added), ", ".join(added)))
             for name, why in skipped:
                 print("  skipped %s: %s" % (name, why))
+        elif a.cmd == "bring":
+            value = int(a.value) if a.value == int(a.value) else a.value
+            cid = bring(data, P.today_arg(a.today), a.who, a.company, a.email, a.website, a.where, a.why, value,
+                        a.title, a.own_deal)
+            P.save(data, a.file)
+            print("Added %s to the board as a lead." % cid)
+            for w in warnings_for(P.find(data["contacts"], cid)):
+                print("  " + w)
         elif a.cmd == "draft":
             d = draft(data, load_openers(), a.contact, a.gap, a.offer)
             print("To: %s\nSubject: %s\n\n%s" % (d["to"], d["subject"], d["body"]))
             if d["missing"]:
                 print("\nFill before it can go: " + ", ".join(d["missing"]))
+            for w in d["warnings"]:
+                print("\n" + w)
         elif a.cmd == "record":
             text = a.text
             if a.text_file:

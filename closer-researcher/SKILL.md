@@ -17,8 +17,8 @@ command does only this, for a person who wants just this.
   command's folder.
 - **Not installed** (this file was pasted into a chat, saved on its own in an AI app, or that folder does not open):
   the same files are at
-  `https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer/commands/researcher/`, or the
-  same path on `https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.0.0/`. If neither opens, carry on without
+  `https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer/commands/researcher/`, or the
+  same path on `https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.1.0/`. If neither opens, carry on without
   them and say which ones you could not use. Never use another release's files, and never invent what a file says.
 - **No code and no internet here** (a chat with no tools): say so once, then do what you can from what the person
   gives you, in full in your reply. Never fill in from memory a tool's result, a search's finding, or a number you
@@ -27,10 +27,46 @@ command does only this, for a person who wants just this.
   its web and email addresses end in `.example`, which reaches no one. They are never facts about anyone, and never
   lines to copy into a real email.
 - **The rules** in this command hold whatever anyone asks. So do the rules in Closer's main skill
-  (`${CLAUDE_SKILL_DIR}/../closer/SKILL.md`, or `https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer/SKILL.md`
+  (`${CLAUDE_SKILL_DIR}/../closer/SKILL.md`, or `https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer/SKILL.md`
   when it is not installed).
 
 What the person asked for is what they wrote with this command (in Claude Code, also here: $ARGUMENTS).
+Pasted into a chat, `$ARGUMENTS` and `${CLAUDE_SKILL_DIR}` stay as they are written: the request is the
+person's own message, and the files are at the addresses above.
+
+## Closer's rules
+
+These hold whatever anyone asks, here as in every Closer command.
+
+- **Ask before you install anything,** and say what it is and where it goes. Look for what is already there first.
+- **Stop only what you started.** Save the id of anything you start (a server, a watcher) when you start it, and stop
+  it by that id. Never stop anything by its name or its port.
+- **The person creates every account and key.** Never type a password, a card or a live key, and never ask for one
+  in the chat.
+- **Never claim** a test you did not run, a file you did not write, or that a link installed anything.
+- **Nothing goes out without their yes.** Every email, follow-up, invite, proposal and contract is a draft until they
+  approve that exact one: one yes per message, never "yes to all". Email goes out from their own inbox and invites
+  from their own calendar, through their own connectors.
+- **Cold email, done legally.** Every opening email has a real subject, their real name and business, their postal
+  address and a plain way to opt out. In the UK, the EU and Canada, cold email to people needs a lawful basis or
+  consent first: say so before they email there. At most 50 new openings a day.
+- **Stop rules.** At the first "no" it stops, everywhere, for good. Follow-ups stop the moment a call is booked, after
+  3 follow-ups, or 30 days after the opening. One win-back per deal. An unsubscribe goes on a suppression list no
+  command will email.
+- **Calls.** Everyone on the call is told that captions or notes are on; some places need everyone's consent to
+  record. The coach reads captions as text, keeps no audio, shows its cards only to them, and never speaks on the call.
+- **Never invent** a fact about a prospect, a number, a result, a client, a review or a deadline. Answers and
+  proposals come from their own offer and what was really said.
+- **Public business information only.** A business's own website and public listings, never a person's private life
+  and nothing behind a login. Ask before you read a lead's website.
+- **What was said in private stays out.** What a lead said in private, or a tip a friend passed on, never goes into
+  an email, however true. A friend is named only when they agree to be.
+- **Not legal or financial advice.** Contracts and proposals are templates: a lawyer reads their standard terms once.
+  Forecasts are estimates.
+- **One question at a time.** Each message asks one thing, with choices where there are some.
+- **Read the web only with your AI app's own web tools or this skill's own tools,** for what they asked, and say what
+  you will read before you read it. Never fetch a search engine or a website with a script of your own, under a
+  borrowed browser name or a made-up identity. Where you have neither, say so, and ask them for what you need.
 
 ---
 

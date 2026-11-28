@@ -125,7 +125,7 @@ def ics(me, contact, start, minutes, title, where="Google Meet"):
     end = start + datetime.timedelta(minutes=minutes)
     stamp = DT.utcnow().strftime("%Y%m%dT%H%M%SZ")
     tz = me.get("timezone") or "America/Chicago"
-    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//bmacbuilds//closer-scheduler 1.0//EN", "METHOD:REQUEST", "BEGIN:VEVENT",
+    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//bmacbuilds//closer-scheduler 1.1//EN", "METHOD:REQUEST", "BEGIN:VEVENT",
              "UID:%s@closer-skill" % uuid.uuid4(), "DTSTAMP:%s" % stamp,
              "DTSTART;TZID=%s:%s" % (tz, start.strftime("%Y%m%dT%H%M%S")),
              "DTEND;TZID=%s:%s" % (tz, end.strftime("%Y%m%dT%H%M%S")),

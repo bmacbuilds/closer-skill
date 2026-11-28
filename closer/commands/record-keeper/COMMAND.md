@@ -3,7 +3,7 @@ title: log every email and call
 ask: Log my emails and calls
 description: >-
   Record Keeper. Logs every email and call for you, so you never update a CRM by hand again.
-  Reads your inbox through the Gmail connector, matches every message to a contact on the
+  Reads your inbox through its connector (Gmail or Microsoft 365), matches every message to a contact on the
   board, and logs it (opening, follow-up or reply) into closer/pipeline.json; logs calls with
   their notes saved to closer/calls/; shows the full timeline with anyone; and lists new
   addresses writing in that are not contacts yet. Use when the user says "log this",
@@ -32,7 +32,7 @@ python3 "<this command's folder>/log.py" timeline --contact dana-harbor-lane
 
 ## Syncing email
 
-1. With the Gmail connector, search the user's mail since the last sync for messages to or from
+1. With their mail connector (Gmail or Microsoft 365), search the user's mail since the last sync for messages to or from
    any contact's address (`from:dana@harborlanedental.example OR to:dana@harborlanedental.example ...`).
    Read only those threads. Never read other mail for this.
 2. Write what you found to a sync file: a JSON list of
@@ -44,7 +44,7 @@ python3 "<this command's folder>/log.py" timeline --contact dana-harbor-lane
    so every command stops. Do not just log it.
 5. `log.py unknown` lists addresses that wrote in but are not contacts. Ask the user before adding any.
 
-No Gmail connector? The user can paste or forward the emails, and you log them with `log.py log`.
+No mail connected? The user can paste or forward the emails, and you log them with `log.py log`.
 
 ## Logging a call
 

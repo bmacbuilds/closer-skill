@@ -41,8 +41,9 @@ python3 "<this command's folder>/winback.py" record --deal lakeline-website --te
    one (a new plan, a result for a similar business). Keep it under 60 words, and keep the easy out:
    "If not, no problem at all, just say so and I'll leave it."
 3. Ask: "Send this to Tom at Lakeline Roofing? Reply yes or no."
-4. On a yes: a Gmail draft from the user's account, which the user sends (or sent through the Gmail
-   connector right after that yes). Then `winback.py record --approval "<their yes>"`. The deal opens again.
+4. On a yes: a draft in the user's own mail (Gmail or Microsoft 365, through its connector), which the user sends
+   (or sent through that connector right after that yes). With no mail connected, they copy it into their own mail, send it themselves and tell you when it went.
+   Then `winback.py record --approval "<their yes>"`. The deal opens again.
 5. If they reply, it is a conversation: `/closer-follow-up reply`, then `/closer-scheduler`.
 
 ## Example

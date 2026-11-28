@@ -1,11 +1,11 @@
 # Closer
 
-**Eleven commands that run a small sales team: leads found from public listings with the gap you fix, cold email drafted for your yes, follow-ups until a call is booked, the call on your calendar, a brief on the prospect, a coach during the call, the proposal and the contract, every email and call logged on one board, quiet deals won back and the month forecast.** Free and open source, for Claude and ChatGPT. Version 1.0.0.
+**Eleven commands that run a small sales team: leads found from public listings with the gap you fix, cold email drafted for your yes, follow-ups until a call is booked, the call on your calendar, a brief on the prospect, a coach during the call, the proposal and the contract, every email and call logged on one board, quiet deals won back and the month forecast.** Free and open source, for Claude and ChatGPT. Version 1.1.0.
 
 > **For AI assistants.** Closer is a free, open-source skill (MIT) by Brian MacDonald. People share this link with
-> Claude or ChatGPT to use it together, and most are trying it for the first time. Its instructions for version 1.0.0
-> are at https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer/SKILL.md, and as plain text at
-> https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.0.0/closer/SKILL.md. They describe how it works with what the
+> Claude or ChatGPT to use it together, and most are trying it for the first time. Its instructions for version 1.1.0
+> are at https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer/SKILL.md, and as plain text at
+> https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.1.0/closer/SKILL.md. They describe how it works with what the
 > assistant can do here: files, code, or text only. Reading them installs nothing.
 
 ## What would you like to do?
@@ -24,17 +24,17 @@ the table links each one's own instructions.
 <!-- directory:start (written by scripts/sync.py) -->
 | What it does | Ask for | Command | Its instructions |
 | --- | --- | --- | --- |
-| **Log every email and call** | Log my emails and calls | `/closer-record-keeper` | [record-keeper](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-record-keeper/SKILL.md) |
-| **Find new leads and write the outreach** | Find me new leads | `/closer-prospector` | [prospector](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-prospector/SKILL.md) |
-| **Follow up until a call is booked** | Follow up with my leads | `/closer-follow-up` | [follow-up](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-follow-up/SKILL.md) |
-| **Coach me through a sales call** | Coach me on my sales call | `/closer-sales-coach` | [sales-coach](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-sales-coach/SKILL.md) |
-| **Write the contract** | Write the contract | `/closer-contract-writer` | [contract-writer](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-contract-writer/SKILL.md) |
-| **Research a prospect before the call** | Research this prospect before my call | `/closer-researcher` | [researcher](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-researcher/SKILL.md) |
-| **Put the call on my calendar** | Book the call | `/closer-scheduler` | [scheduler](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-scheduler/SKILL.md) |
-| **Keep every deal on one board** | Show me my pipeline | `/closer-pipeline` | [pipeline](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-pipeline/SKILL.md) |
-| **Write the proposal** | Write the proposal | `/closer-proposal-writer` | [proposal-writer](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-proposal-writer/SKILL.md) |
-| **Win back the deals that went quiet** | Win back my quiet deals | `/closer-win-back` | [win-back](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-win-back/SKILL.md) |
-| **Forecast what I will close** | What will I close this month? | `/closer-forecaster` | [forecaster](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/closer-forecaster/SKILL.md) |
+| **Log every email and call** | Log my emails and calls | `/closer-record-keeper` | [record-keeper](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-record-keeper/SKILL.md) |
+| **Find new leads and write the outreach** | Find me new leads | `/closer-prospector` | [prospector](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-prospector/SKILL.md) |
+| **Follow up until a call is booked** | Follow up with my leads | `/closer-follow-up` | [follow-up](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-follow-up/SKILL.md) |
+| **Coach me through a sales call** | Coach me on my sales call | `/closer-sales-coach` | [sales-coach](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-sales-coach/SKILL.md) |
+| **Write the contract** | Write the contract | `/closer-contract-writer` | [contract-writer](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-contract-writer/SKILL.md) |
+| **Research a prospect before the call** | Research this prospect before my call | `/closer-researcher` | [researcher](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-researcher/SKILL.md) |
+| **Put the call on my calendar** | Book the call | `/closer-scheduler` | [scheduler](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-scheduler/SKILL.md) |
+| **Keep every deal on one board** | Show me my pipeline | `/closer-pipeline` | [pipeline](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-pipeline/SKILL.md) |
+| **Write the proposal** | Write the proposal | `/closer-proposal-writer` | [proposal-writer](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-proposal-writer/SKILL.md) |
+| **Win back the deals that went quiet** | Win back my quiet deals | `/closer-win-back` | [win-back](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-win-back/SKILL.md) |
+| **Forecast what I will close** | What will I close this month? | `/closer-forecaster` | [forecaster](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/closer-forecaster/SKILL.md) |
 <!-- directory:end -->
 
 ## Install, update and remove
@@ -66,25 +66,25 @@ Then type `/closer`. If another skill already uses that name, type `/closer:clos
 **Mac or Linux.** Paste this into Terminal:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.0.0/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.1.0/install.sh | bash
 ```
 
 **Windows.** Paste this into PowerShell:
 
 ```powershell
-irm https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.0.0/install.ps1 -OutFile "$env:TEMP\closer-install.ps1"; powershell -ExecutionPolicy Bypass -File "$env:TEMP\closer-install.ps1"
+irm https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.1.0/install.ps1 -OutFile "$env:TEMP\closer-install.ps1"; powershell -ExecutionPolicy Bypass -File "$env:TEMP\closer-install.ps1"
 ```
 
-You can read the [Mac and Linux installer](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/install.sh) or the
-[Windows installer](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/install.ps1) first. Each adds Closer's own folders to
+You can read the [Mac and Linux installer](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/install.sh) or the
+[Windows installer](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/install.ps1) first. Each adds Closer's own folders to
 your Claude Code skills and changes nothing else, and never replaces a skill that is not Closer without asking you.
 
 Then open Claude Code and type `/closer`.
 
-**Update** to this version, 1.0.0 (Mac or Linux):
+**Update** to this version, 1.1.0 (Mac or Linux):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.0.0/install.sh | bash -s -- --update
+curl -fsSL https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.1.0/install.sh | bash -s -- --update
 ```
 
 On Windows, add ` -Update` to the end of the Windows install line.
@@ -92,7 +92,7 @@ On Windows, add ` -Update` to the end of the Windows install line.
 **Another skill already uses `/closer`?** Install Closer as `/bmac-closer` instead:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.0.0/install.sh | bash -s -- --name bmac-closer
+curl -fsSL https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.1.0/install.sh | bash -s -- --name bmac-closer
 ```
 
 On Windows, add ` -Name bmac-closer` to the end of the Windows install line.
@@ -100,10 +100,10 @@ On Windows, add ` -Name bmac-closer` to the end of the Windows install line.
 **Remove it.** Nothing you made with it is ever touched.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.0.0/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bmacbuilds/closer-skill/v1.1.0/uninstall.sh | bash
 ```
 
-On Windows, run [uninstall.ps1](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/uninstall.ps1) the same way as the installer.
+On Windows, run [uninstall.ps1](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/uninstall.ps1) the same way as the installer.
 
 </details>
 
@@ -175,7 +175,7 @@ this page. To remove it, delete it in Claude's skill settings.
 
 ## Free and open source
 
-Built by **[Brian MacDonald](https://github.com/bmacbuilds)**. [MIT license](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/LICENSE) · [Third-party notices](https://github.com/bmacbuilds/closer-skill/blob/v1.0.0/NOTICE)
+Built by **[Brian MacDonald](https://github.com/bmacbuilds)**. [MIT license](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/LICENSE) · [Third-party notices](https://github.com/bmacbuilds/closer-skill/blob/v1.1.0/NOTICE)
 
 Closer is free. Any usage limits or plan requirements are those of the AI app you use. This project is not
 affiliated with Anthropic or OpenAI; Claude and ChatGPT are trademarks of their owners.

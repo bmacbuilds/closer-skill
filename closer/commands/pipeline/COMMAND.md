@@ -20,8 +20,9 @@ user's project, no account, no seats, no monthly bill.
 `<this command's folder>` below is the folder this command's files are in.
 
 ```bash
-python3 "<this command's folder>/deals.py" init --name "You" --company "Your Agency" \
+python3 "<this command's folder>/deals.py" init --name "You" --company "Your Agency" --we \
     --email hello@youragency.example --address "100 Example Ave, Suite 400, Austin, TX 78701" \
+    --timezone America/Chicago \
     --offer "booking-ready websites and Google Ads" --price "\$2,500" \
     --plan_b "\$399 monthly plan instead, with no setup fee" \
     --value_line "Most practices win the cost back with 2 new patients a month."
@@ -38,8 +39,9 @@ Every command takes `--file` (default `closer/pipeline.json`).
 
 1. Ask the user for: their name, business name, the email they sell from, a postal address (the
    law needs one in cold email), their time zone, what they sell, the price, a smaller second
-   option, and one true line about what it pays back. Do not guess any of these.
-2. `deals.py init` with those answers.
+   option, and one true line about what it pays back. Do not guess any of these. Ask one at a time.
+2. `deals.py init` with those answers. Add `--we` when they sell as a team, so the emails say "we"; one person's
+   say "I".
 3. If they are moving from Salesforce, HubSpot or a spreadsheet, ask them to export contacts and
    open deals as CSV, then add each with `deals.py contact` and `deals.py deal`. Map their stages
    onto the eight below and show the mapping before writing anything.

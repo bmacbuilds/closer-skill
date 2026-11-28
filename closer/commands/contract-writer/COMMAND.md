@@ -42,8 +42,9 @@ python3 "<this command's folder>/contract.py" signed --deal harbor-lane-website 
 6. Draft the email: short, warm, what is attached, what happens next. "Hi Dana, great talking today!
    Here's the agreement for the $399 monthly plan. Sign whenever you're ready and we'll start Monday."
    Ask: "Send this to Dana with the agreement attached? Reply yes or no."
-7. On a yes: a Gmail draft with the PDF attached from the user's account, which the user sends (or sent
-   through the Gmail connector right after that yes). Then `contract.py record --approval "<their yes>"`.
+7. On a yes: a draft with the PDF attached in the user's own mail (Gmail or Microsoft 365, through its connector),
+   which the user sends (or sent through that connector right after that yes). With no mail connected, they copy it into their own mail, send it themselves and tell you when it went.
+   Then `contract.py record --approval "<their yes>"`.
 8. For e-signature, the user can upload the PDF to the e-sign tool they already use; this command never
    signs for anyone. When the signed copy comes back, `contract.py signed`.
 

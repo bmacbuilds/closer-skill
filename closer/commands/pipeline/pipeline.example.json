@@ -3,6 +3,7 @@
   "me": {
     "name": "You",
     "company": "Your Agency",
+    "we": true,
     "email": "hello@youragency.example",
     "phone": null,
     "address": "100 Example Ave, Suite 400, Austin, TX 78701",

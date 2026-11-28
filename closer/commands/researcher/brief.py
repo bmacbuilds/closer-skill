@@ -29,7 +29,7 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = os.path.join("closer", "research")
-UA = "closer/1.0 (+https://github.com/bmacbuilds/closer-skill; reads public pages only)"
+UA = "closer/1.1 (+https://github.com/bmacbuilds/closer-skill; reads public pages only)"
 MAX_PAGES = 4
 WANT = re.compile(r"\b(about|our story|services|treatments|what we do|menu|team|staff|meet|doctors?|contact|pricing)\b", re.I)
 

@@ -59,8 +59,9 @@ Tue Oct 27.
 2. `followup.py due`. Read it to the user grouped as it prints: DUE NOW, YOUR TURN, WAITING, BOOKED, STOPPED.
 3. For each DUE NOW, `followup.py draft`. Fill every `[fill: ...]`. Show it: "Send this follow-up to Dana?
    Reply yes or no." One message per question.
-4. On a yes: a Gmail draft in the same thread from the user's account, which the user sends (or sent through
-   the Gmail connector right after that yes). Then `followup.py record --approval "<their yes, word for word>"`.
+4. On a yes: a draft in the same thread in the user's own mail (Gmail or Microsoft 365, through its connector),
+   which the user sends (or sent through that connector right after that yes). With no mail connected, they copy it into their own mail, send it themselves and tell you when it went.
+   Then `followup.py record --approval "<their yes, word for word>"`.
 5. For each YOUR TURN: when they gave a time, hand it to `/closer-scheduler` (`slots.py parse`), confirm with the
    `confirm-time` template, and book. When they said no, `followup.py reply` with their words: it stops
    everything and marks the deal lost.
